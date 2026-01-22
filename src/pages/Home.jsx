@@ -1,0 +1,233 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Button from '../components/Button';
+import ProductCard from '../components/ProductCard';
+import { products } from '../data/products';
+
+const Home = () => {
+  const featuredProducts = products.slice(0, 6);
+  const heroBg = new URL('../../images/assam-head.jpg', import.meta.url).href;
+
+  const handleWhatsAppOrder = () => {
+    const message = encodeURIComponent('Hello! I would like to place an order.');
+    window.open(`https://wa.me/1234567890?text=${message}`, '_blank');
+  };
+
+  return (
+    <main>
+      {/* Hero Section */}
+      <section
+        className="relative bg-cover bg-center text-white py-24 md:py-40"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
+        <div className="absolute inset-0 bg-primary-green/70" aria-hidden="true" />
+        <div className="container mx-auto px-4">
+          <div className="relative max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              Authentic flavours from India
+            </h1>
+            <p className="text-xl md:text-2xl mb-10 text-white/90">
+              Premium quality since 2015.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/products">
+                <Button variant="secondary" size="lg">
+                  Shop Tea
+                </Button>
+              </Link>
+              <Button variant="whatsapp" size="lg" onClick={handleWhatsAppOrder}>
+                Order via WhatsApp
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trus Signals Section */}
+      <section className="py-24 bg-background-beige">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-sm p-8 md:p-12 text-center">
+            <h2 className="text-2xl md:text-3xl font-semibold text-text-primary mb-6">
+              Prime Assam Tea
+            </h2>
+            <p className="text-text-secondary leading-relaxed text-base md:text-lg">
+              Assam tea is one of the most renowned teas in the world, valued for its rich flavor, deep color, and full-bodied character. Grown in the fertile Brahmaputra Valley in northeastern India, Assam benefits from a unique climate of high rainfall, warm temperatures, and nutrient-rich soil — ideal conditions for cultivating strong and aromatic tea leaves. Known for its bold taste and malty notes, Assam tea is widely enjoyed both on its own and as a base for traditional Indian masala chai, making it a favorite among tea drinkers worldwide.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="bg-white rounded-2xl shadow-sm p-8 md:p-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-text-primary">
+              Featured Products
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+              {featuredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+            <div className="text-center mt-12">
+              <Link to="/products">
+                <Button variant="outline" size="lg">
+                  View All Products
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Company Preview */}
+      <section className="py-24 bg-background-beige">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm p-8 md:p-12 text-center">
+            <p className="text-lg md:text-xl text-text-secondary leading-relaxed mb-6">
+              Prime Empire LLP brings authentic Indian tea to Kazakhstan, sourced directly from the tea gardens of Assam, India. Established in 2015 in Almaty, the company is built on tradition, quality, and a deep understanding of tea.
+            </p>
+            <Link to="/about">
+              <Button variant="outline" size="lg">
+                Read Our Story
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="bg-white rounded-2xl shadow-sm p-8 md:p-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-text-primary">
+              Why Choose Us
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                  <svg className="w-8 h-8 text-primary-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-text-primary">Authentic Sourcing</h3>
+                <p className="text-text-secondary text-sm">
+                  Direct from Assam tea gardens, ensuring genuine Indian tea heritage.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                  <svg className="w-8 h-8 text-primary-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-text-primary">Premium Quality</h3>
+                <p className="text-text-secondary text-sm">
+                  Carefully selected tea leaves that meet our highest standards.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                  <svg className="w-8 h-8 text-primary-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-text-primary">Years of Experience</h3>
+                <p className="text-text-secondary text-sm">
+                  Serving Kazakhstan since 2015 with deep tea expertise.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                  <svg className="w-8 h-8 text-primary-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-text-primary">Trusted Brand</h3>
+                <p className="text-text-secondary text-sm">
+                  Beloved by customers across Kazakhstan for authentic taste.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Testimonials */}
+      <section className="py-24 bg-background-beige">
+        <div className="container mx-auto px-4">
+          <div className="bg-white rounded-2xl shadow-sm p-8 md:p-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-text-primary">
+              What Our Customers Say
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <div className="bg-background-beige p-6 rounded-lg">
+                <div className="flex items-center mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-accent-saffron" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-text-secondary mb-4 italic">
+                  "The authentic Assam tea from Prime Empire is exceptional. It reminds me of home. The quality is unmatched!"
+                </p>
+                <p className="font-semibold text-text-primary">A. K.</p>
+              </div>
+              <div className="bg-background-beige p-6 rounded-lg">
+                <div className="flex items-center mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-accent-saffron" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-text-secondary mb-4 italic">
+                  "Best Indian tea in Almaty! Prime Empire has been my go-to for years. Always fresh and authentic."
+                </p>
+                <p className="font-semibold text-text-primary">M. S.</p>
+              </div>
+              <div className="bg-background-beige p-6 rounded-lg md:col-span-2 lg:col-span-1">
+                <div className="flex items-center mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-accent-saffron" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-text-secondary mb-4 italic">
+                  "Premium quality tea that delivers on its promise. Highly recommend to all tea lovers in Kazakhstan!"
+                </p>
+                <p className="font-semibold text-text-primary">R. T.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* //Final Call to Action */}
+      {/*<section className="py-20 bg-gradient-to-r from-primary-green to-secondary-brown text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">
+              Experience authentic Indian tea.
+            </h2>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/products">
+                <Button variant="secondary" size="lg">
+                  Shop Now
+                </Button>
+              </Link>
+              <Button variant="whatsapp" size="lg" onClick={handleWhatsAppOrder}>
+                Order via WhatsApp
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section> */}
+    </main>
+  );
+};
+
+export default Home;
