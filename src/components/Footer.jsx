@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const logoUrl = new URL('../../images/Prime Empire Logo.png', import.meta.url).href;
 
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -13,10 +15,10 @@ const Footer = () => {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <span className="text-xl font-bold text-white">Prime Empire</span>
+              <span className="text-xl font-bold text-white">{t('footer.brand')}</span>
             </div>
             <p className="mb-4 max-w-md text-white/90">
-              Premium tea and spices sourced from the finest regions. Experience the authentic flavors and quality that Prime Empire has to offer.
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4">
               <a
@@ -57,26 +59,26 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-white font-semibold mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-white/90 hover:text-white transition-colors">
-                  Home
+                  {t('nav.home')}
                 </Link>
               </li>
               <li>
                 <Link to="/products" className="text-white/90 hover:text-white transition-colors">
-                  Products
+                  {t('nav.products')}
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-white/90 hover:text-white transition-colors">
-                  About Us
+                  {t('nav.about')}
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-white/90 hover:text-white transition-colors">
-                  Contact
+                  {t('nav.contact')}
                 </Link>
               </li>
             </ul>
@@ -84,37 +86,64 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Contact</h3>
+            <h3 className="text-white font-semibold mb-4">{t('footer.contactTitle')}</h3>
             <ul className="space-y-2">
               <li className="flex items-start">
-                <svg className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
+                <a
+                  href="tel:+77778119001"
+                  className="mr-2 mt-0.5 flex-shrink-0 text-white/90 hover:text-white transition-colors"
+                  aria-label="Call Prime Empire"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </a>
                 <a href="tel:+77778119001" className="text-white/90 hover:text-white transition-colors">
                   +7 777 811 90 01
                 </a>
               </li>
               <li className="flex items-start">
-                <svg className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <a href="mailto:info@primeempire@mail.ru" className="text-white/90 hover:text-white transition-colors">
+                <a
+                  href="mailto:primeempire@mail.ru"
+                  className="mr-2 mt-0.5 flex-shrink-0 text-white/90 hover:text-white transition-colors"
+                  aria-label="Email Prime Empire"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </a>
+                <a href="mailto:primeempire@mail.ru" className="text-white/90 hover:text-white transition-colors">
                   primeempire@mail.ru
                 </a>
               </li>
               <li className="flex items-start">
-                <svg className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span className="text-white/90">Kazakhstan, Almaty, Auezov 1A</span>
+                <a
+                  href="https://go.2gis.com/BB15I"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mr-2 mt-0.5 flex-shrink-0 text-white/90 hover:text-white transition-colors"
+                  aria-label="Open location in 2GIS"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://go.2gis.com/BB15I"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/90 hover:text-white transition-colors"
+                >
+                  {t('footer.address')}
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-white/20 mt-8 pt-8 text-center">
-          <p className="text-white/90">&copy; {currentYear} LLP "Prime Empire". All rights reserved.</p>
+          <p className="text-white/90">{t('footer.copyright', { year: currentYear })}</p>
         </div>
       </div>
     </footer>

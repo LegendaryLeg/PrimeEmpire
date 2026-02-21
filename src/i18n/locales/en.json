@@ -1,0 +1,196 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "contact": "Contact",
+    "about": "About Us",
+    "cart": "Cart"
+  },
+  "cta": {
+    "order": "Order via WhatsApp",
+    "shopTea": "Shop Tea",
+    "viewAllProducts": "View All Products",
+    "readOurStory": "Read Our Story"
+  },
+  "buttons": {
+    "sendMessage": "Send Message",
+    "browseProducts": "Browse Products",
+    "goToCheckout": "Go to Checkout",
+    "addToCart": "Add to cart",
+    "orderWhatsapp": "Order through whatsapp",
+    "backToProducts": "Back to Products",
+    "back": "Back"
+  },
+  "home": {
+    "hero": {
+      "title": "Authentic flavours from India",
+      "subtitle": "Premium quality since 2015."
+    },
+    "assamTea": {
+      "title": "Prime Assam Tea",
+      "description": "Assam tea is one of the most renowned teas in the world, valued for its rich flavor, deep color, and full-bodied character. Grown in the fertile Brahmaputra Valley in northeastern India, Assam benefits from a unique climate of high rainfall, warm temperatures, and nutrient-rich soil — ideal conditions for cultivating strong and aromatic tea leaves. Known for its bold taste and malty notes, Assam tea is widely enjoyed both on its own and as a base for traditional Indian masala chai, making it a favorite among tea drinkers worldwide."
+    },
+    "featuredProducts": {
+      "title": "Featured Products"
+    },
+    "aboutPreview": {
+      "text": "Prime Empire LLP brings authentic Indian tea to Kazakhstan, sourced directly from the tea gardens of Assam, India. Established in 2015 in Almaty, the company is built on tradition, quality, and a deep understanding of tea."
+    },
+    "whyChooseUs": {
+      "title": "Why Choose Us",
+      "items": [
+        {
+          "title": "Authentic Sourcing",
+          "description": "Direct from Assam tea gardens, ensuring genuine Indian tea heritage."
+        },
+        {
+          "title": "Premium Quality",
+          "description": "Carefully selected tea leaves that meet our highest standards."
+        },
+        {
+          "title": "Years of Experience",
+          "description": "Serving Kazakhstan since 2015 with deep tea expertise."
+        },
+        {
+          "title": "Trusted Brand",
+          "description": "Beloved by customers across Kazakhstan for authentic taste."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "What Our Customers Say",
+      "items": [
+        {
+          "quote": "The authentic Assam tea from Prime Empire is exceptional. It reminds me of home. The quality is unmatched!",
+          "author": "A. K."
+        },
+        {
+          "quote": "Best Indian tea in Almaty! Prime Empire has been my go-to for years. Always fresh and authentic.",
+          "author": "M. S."
+        },
+        {
+          "quote": "Premium quality tea that delivers on its promise. Highly recommend to all tea lovers in Kazakhstan!",
+          "author": "R. T."
+        }
+      ]
+    }
+  },
+  "products": {
+    "title": "Our Products",
+    "empty": "No products found in this category.",
+    "categories": {
+      "all": "All",
+      "tea": "Tea",
+      "blackTea": "Black Tea",
+      "greenTea": "Green Tea",
+      "teaBags": "Tea Bags",
+      "spices": "Spices",
+      "grains": "Grains"
+    }
+  },
+  "productDetail": {
+    "notFoundTitle": "Product Not Found",
+    "description": "Description",
+    "origin": "Origin",
+    "aroma": "Aroma",
+    "brewing": "Brewing Instructions",
+    "form": "Form",
+    "teaType": "Tea Type",
+    "leafType": "Leaf Type"
+  },
+  "states": {
+    "loadingProducts": "Loading products...",
+    "errorProducts": "Unable to load products.",
+    "loadingProduct": "Loading product...",
+    "errorProduct": "Unable to load product."
+  },
+  "about": {
+    "storyTitle": "Our Story",
+    "storySubtitle": "Authentic Indian tea, built on tradition and trust",
+    "storyParagraphs": [
+      "Prime Empire LLP was established in 2015 in Almaty, Kazakhstan, with the goal of bringing authentic Indian tea to local customers while preserving its original quality and character.",
+      "Founded by Rashid Mohammad, a native of India who moved to Almaty in 1991, the company is built on strong cultural ties and firsthand knowledge of Indian tea traditions.",
+      "Our tea is sourced from Assam, India — a region known worldwide for its rich, full-bodied teas. Today, our range includes black tea (medium leaf, large leaf, and CTC), green tea, masala tea, and other carefully selected products."
+    ],
+    "approach": {
+      "title": "Our Approach",
+      "subtitle": "A careful process that protects quality from sourcing to your cup.",
+      "steps": [
+        {
+          "title": "Careful Sourcing",
+          "text": "Our tea is sourced from trusted suppliers in Assam, India — a region known for its rich tea-growing tradition."
+        },
+        {
+          "title": "Quality Selection",
+          "text": "Each variety is selected with attention to leaf quality, aroma, and consistency, ensuring a reliable experience with every purchase."
+        },
+        {
+          "title": "From Origin to Customer",
+          "text": "From sourcing to delivery, we focus on freshness, proper handling, and maintaining the original character of the tea."
+        }
+      ]
+    },
+    "flow": {
+      "title": "From Assam to Your Cup",
+      "steps": [
+        {
+          "title": "Tea gardens in Assam",
+          "text": "We begin at the source, selecting tea from trusted gardens known for depth and character."
+        },
+        {
+          "title": "Selection and packaging",
+          "text": "Each batch is assessed for aroma and consistency before careful packaging."
+        },
+        {
+          "title": "Ready for customers",
+          "text": "The tea arrives fresh and true to its origin, prepared for a premium experience."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "formTitle": "Send us a Message",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message"
+    },
+    "infoTitle": "Get in Touch",
+    "info": {
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address"
+    },
+    "address": {
+      "line1": "Auezov 1A, 050008",
+      "line2": "Almaty",
+      "line3": "Kazakhstan"
+    },
+    "whatsappMessage": {
+      "intro": "Hello! I would like to get in touch.",
+      "nameLabel": "Name",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "messageLabel": "Message"
+    }
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty.",
+    "total": "Total:",
+    "orderMessage": {
+      "intro": "Hello! I would like to place an order:",
+      "totalLabel": "Total:"
+    }
+  },
+  "footer": {
+    "brand": "Prime Empire",
+    "description": "Premium tea and spices sourced from the finest regions. Experience the authentic flavors and quality that Prime Empire has to offer.",
+    "quickLinks": "Quick Links",
+    "contactTitle": "Contact",
+    "address": "Kazakhstan, Almaty, Auezov 1A",
+    "copyright": "© {{year}} LLP \"Prime Empire\". All rights reserved."
+  }
+}

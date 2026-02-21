@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useCart } from '../context/CartContext';
 
 const logoUrl = new URL('../../images/Prime Empire Logo.png', import.meta.url).href;
@@ -7,14 +8,15 @@ const logoUrl = new URL('../../images/Prime Empire Logo.png', import.meta.url).h
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
   const { totalCount } = useCart();
 
   const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/products', label: 'Products' },
-    { path: '/about', label: 'About Us' },
-    { path: '/contact', label: 'Contact' },
-    { path: '/cart', label: 'Cart' },
+    { path: '/', label: t('nav.home') },
+    { path: '/products', label: t('nav.products') },
+    { path: '/about', label: t('nav.about') },
+    { path: '/contact', label: t('nav.contact') },
+    { path: '/cart', label: t('nav.cart') },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -36,52 +38,54 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  isActive(link.path)
-                    ? 'text-primary-green bg-background-beige'
-                    : 'text-text-secondary hover:text-primary-green hover:bg-background-beige'
-                }`}
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex items-center space-x-6">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isActive(link.path)
+                      ? 'text-primary-green bg-background-beige'
+                      : 'text-text-secondary hover:text-primary-green hover:bg-background-beige'
+                  }`}
+                >
+                  <span className="relative">
+                    {link.label}
+                    {link.path === '/cart' && totalCount > 0 && (
+                      <span className="absolute -top-2 -right-3 bg-accent-saffron text-white text-xs rounded-full px-1.5 py-0.5">
+                        {totalCount}
+                      </span>
+                    )}
+                  </span>
+                </Link>
+              ))}
+            </div>
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden p-2 rounded-md text-text-secondary hover:bg-background-beige focus:outline-none focus:ring-2 focus:ring-primary-green"
+              aria-label="Toggle menu"
+              aria-expanded={isOpen}
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                <span className="relative">
-                  {link.label}
-                  {link.path === '/cart' && totalCount > 0 && (
-                    <span className="absolute -top-2 -right-3 bg-accent-saffron text-white text-xs rounded-full px-1.5 py-0.5">
-                      {totalCount}
-                    </span>
-                  )}
-                </span>
-              </Link>
-            ))}
+                {isOpen ? (
+                  <path d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md text-text-secondary hover:bg-background-beige focus:outline-none focus:ring-2 focus:ring-primary-green"
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
         </div>
 
         {/* Mobile Navigation */}

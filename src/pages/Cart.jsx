@@ -1,27 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Button from '../components/Button';
 import { useCart } from '../context/CartContext';
 
 const Cart = () => {
+  const { t } = useTranslation();
   const { items, addItem, removeItem, totalPrice } = useCart();
+
+  const handleWhatsAppOrder = () => {
+    const lines = items.map(
+      ({ product, quantity }) => `${product.name} x${quantity} — ₸${product.price * quantity}`
+    );
+    const message = encodeURIComponent(
+      `${t('cart.orderMessage.intro')}\n\n${lines.join('\n')}\n\n${t('cart.orderMessage.totalLabel')} ₸${totalPrice}`
+    );
+    window.open(`https://wa.me/87789268007?text=${message}`, '_blank');
+  };
 
   return (
     <main className="min-h-screen py-24 bg-background-beige">
       <div className="container mx-auto px-4">
         <div className="bg-white rounded-2xl shadow-sm p-8 md:p-12">
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-text-primary">
-            Your Cart
+            {t('cart.title')}
           </h1>
 
           {items.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-text-secondary text-lg mb-6">
-                Your cart is empty.
+                {t('cart.empty')}
               </p>
               <Link to="/products">
                 <Button variant="outline" size="lg">
-                  Browse Products
+                  {t('buttons.browseProducts')}
                 </Button>
               </Link>
             </div>
@@ -71,10 +83,10 @@ const Cart = () => {
 
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-6">
                 <p className="text-xl font-semibold text-text-primary">
-                  Total: ₸{totalPrice}
+                  {t('cart.total')} ₸{totalPrice}
                 </p>
-                <Button variant="primary" size="lg">
-                  Order through whatsapp
+                <Button variant="primary" size="lg" onClick={handleWhatsAppOrder}>
+                  {t('buttons.orderWhatsapp')}
                 </Button>
               </div>
             </div>

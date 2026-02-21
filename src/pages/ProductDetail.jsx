@@ -1,30 +1,66 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Button from '../components/Button';
-import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
+import { useLanguage } from '../context/LanguageContext';
+import { useProducts } from '../hooks/useProducts';
 
 const ProductDetail = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
-  const product = products.find((p) => p.id === parseInt(id));
   const [selectedImage, setSelectedImage] = useState(0);
-  const { addItem, removeItem, getQuantity } = useCart();
-  const quantity = product ? getQuantity(product.id) : 0;
+  const { addItem } = useCart();
+  const { language } = useLanguage();
+  const { data: product, loading, error } = useProducts({ language, id });
+  const [quantity, setQuantity] = useState(1);
+  const galleryImages = useMemo(
+    () => (product?.images?.length ? product.images : product?.image ? [product.image] : []),
+    [product]
+  );
 
-  const handleWhatsAppOrder = () => {
-    const message = encodeURIComponent(
-      `Hello! I would like to order: ${product.name} - $${product.price}`
-    );
-    window.open(`https://wa.me/1234567890?text=${message}`, '_blank');
+  const handleDecrease = () => {
+    setQuantity((prev) => Math.max(1, prev - 1));
   };
+
+  const handleIncrease = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const handleAddToCart = () => {
+    if (product) {
+      addItem(product, quantity);
+    }
+  };
+
+  if (loading) {
+    return (
+      <main className="min-h-screen py-16">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-text-secondary text-lg">{t('states.loadingProduct')}</p>
+        </div>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main className="min-h-screen py-16">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-red-600 text-lg">{t('states.errorProduct')}</p>
+          <Button onClick={() => navigate('/products')}>{t('buttons.backToProducts')}</Button>
+        </div>
+      </main>
+    );
+  }
 
   if (!product) {
     return (
       <main className="min-h-screen py-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl font-bold mb-4">Product Not Found</h1>
-          <Button onClick={() => navigate('/products')}>Back to Products</Button>
+          <h1 className="text-3xl font-bold mb-4">{t('productDetail.notFoundTitle')}</h1>
+          <Button onClick={() => navigate('/products')}>{t('buttons.backToProducts')}</Button>
         </div>
       </main>
     );
@@ -41,7 +77,7 @@ const ProductDetail = () => {
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            Back
+            {t('buttons.back')}
           </button>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -49,13 +85,13 @@ const ProductDetail = () => {
             <div>
               <div className="aspect-square mb-4 bg-border-divider rounded-lg overflow-hidden">
                 <img
-                  src={product.images[selectedImage]}
+                  src={galleryImages[selectedImage]}
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="grid grid-cols-4 gap-2">
-                {product.images.map((image, index) => (
+                {galleryImages.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
@@ -78,34 +114,54 @@ const ProductDetail = () => {
             {/* Product Info */}
             <div>
               <h1 className="text-3xl md:text-4xl font-bold mb-4">{product.name}</h1>
-            <p className="text-3xl font-bold text-primary-green mb-6">₸{product.price}</p>
+              <p className="text-3xl font-bold text-primary-green mb-6">₸{product.price}</p>
 
               <div className="mb-6">
-                <h2 className="text-xl font-semibold mb-2">Description</h2>
+                <h2 className="text-xl font-semibold mb-2">{t('productDetail.description')}</h2>
                 <p className="text-text-secondary leading-relaxed">{product.description}</p>
               </div>
 
               <div className="space-y-4 mb-8">
-                <div>
-                  <h3 className="font-semibold text-text-primary mb-1">Origin</h3>
-                  <p className="text-text-secondary">{product.origin}</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-text-primary mb-1">Aroma</h3>
-                  <p className="text-text-secondary">{product.aroma}</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-text-primary mb-1">Brewing Instructions</h3>
-                  <p className="text-text-secondary">{product.brewing}</p>
-                </div>
+                {product.form && (
+                  <div>
+                    <h3 className="font-semibold text-text-primary mb-1">
+                      {t('productDetail.form')}
+                    </h3>
+                    <p className="text-text-secondary">{product.form}</p>
+                  </div>
+                )}
+                {product.origin && (
+                  <div>
+                    <h3 className="font-semibold text-text-primary mb-1">
+                      {t('productDetail.origin')}
+                    </h3>
+                    <p className="text-text-secondary">{product.origin}</p>
+                  </div>
+                )}
+                {product.tea_type && (
+                  <div>
+                    <h3 className="font-semibold text-text-primary mb-1">
+                      {t('productDetail.teaType')}
+                    </h3>
+                    <p className="text-text-secondary">{product.tea_type}</p>
+                  </div>
+                )}
+                {product.leaf_type && (
+                  <div>
+                    <h3 className="font-semibold text-text-primary mb-1">
+                      {t('productDetail.leafType')}
+                    </h3>
+                    <p className="text-text-secondary">{product.leaf_type}</p>
+                  </div>
+                )}
               </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex items-center justify-between border border-border-divider rounded-full px-4 py-2 flex-1">
                 <button
-                  onClick={() => removeItem(product.id)}
+                  onClick={handleDecrease}
                   className="w-10 h-10 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
-                  aria-label={`Remove one ${product.name}`}
+                  aria-label={`Decrease quantity for ${product.name}`}
                 >
                   −
                 </button>
@@ -113,16 +169,19 @@ const ProductDetail = () => {
                   {quantity}
                 </span>
                 <button
-                  onClick={() => addItem(product)}
+                  onClick={handleIncrease}
                   className="w-10 h-10 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
-                  aria-label={`Add one ${product.name}`}
+                  aria-label={`Increase quantity for ${product.name}`}
                 >
                   +
                 </button>
               </div>
+              <Button variant="outline" size="lg" className="flex-1" onClick={handleAddToCart}>
+                {t('buttons.addToCart')}
+              </Button>
               <Link to="/cart" className="flex-1">
                 <Button variant="whatsapp" size="lg" className="w-full">
-                  Go to Checkout
+                  {t('buttons.goToCheckout')}
                 </Button>
               </Link>
             </div>

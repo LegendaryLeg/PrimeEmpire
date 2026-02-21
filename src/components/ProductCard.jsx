@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Button from './Button';
 import { useCart } from '../context/CartContext';
 
 const ProductCard = ({ product }) => {
-  const { addItem, removeItem, getQuantity } = useCart();
-  const quantity = getQuantity(product.id);
+  const { t } = useTranslation();
+  const { addItem } = useCart();
+  const [quantity, setQuantity] = useState(1);
+
+  const handleDecrease = () => {
+    setQuantity((prev) => Math.max(1, prev - 1));
+  };
+
+  const handleIncrease = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const handleAddToCart = () => {
+    addItem(product, quantity);
+  };
 
   return (
     <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
@@ -28,16 +42,11 @@ const ProductCard = ({ product }) => {
           ₸{product.price}
         </p>
         <div className="mt-auto flex flex-col gap-3">
-          <Link to={`/products/${product.id}`} className="flex-1">
-            <Button variant="outline" size="sm" className="w-full">
-              View Product
-            </Button>
-          </Link>
           <div className="flex items-center justify-between border border-border-divider rounded-full px-3 py-2">
             <button
-              onClick={() => removeItem(product.id)}
+              onClick={handleDecrease}
               className="w-8 h-8 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
-              aria-label={`Remove one ${product.name}`}
+              aria-label={`Decrease quantity for ${product.name}`}
             >
               −
             </button>
@@ -45,13 +54,16 @@ const ProductCard = ({ product }) => {
               {quantity}
             </span>
             <button
-              onClick={() => addItem(product)}
+              onClick={handleIncrease}
               className="w-8 h-8 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
-              aria-label={`Add one ${product.name}`}
+              aria-label={`Increase quantity for ${product.name}`}
             >
               +
             </button>
           </div>
+          <Button variant="outline" size="sm" className="w-full" onClick={handleAddToCart}>
+            {t('buttons.addToCart')}
+          </Button>
         </div>
       </div>
     </article>

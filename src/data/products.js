@@ -15,7 +15,7 @@ const karakTeaImage = new URL('../../images/karakTea.png', import.meta.url).href
 const atkenTeaImage = new URL('../../images/atkenTea.png', import.meta.url).href;
 const blackTeaBagsImage = new URL('../../images/bags100.png', import.meta.url).href;
 const blackTeaBags25Image = new URL('../../images/black tea bags 25.png', import.meta.url).href;
-const healthTea450Image = new URL('../../images/for health 450.png', import.meta.url).href;
+const healthTea450Image = new URL('../../images/healthTea450.png', import.meta.url).href;
 
 export const products = [
   {
@@ -228,7 +228,7 @@ export const products = [
       blackTeaBagsImage,
     ],
   },
-  {
+  /*{
     id: 16,
     name: 'Black Tea Bags – 25 Bags',
     price: 500,
@@ -241,7 +241,7 @@ export const products = [
     images: [
       blackTeaBags25Image,
     ],
-  },
+  },*/
   {
     id: 17,
     name: 'Health Tea – 450 g',
