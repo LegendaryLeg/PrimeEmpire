@@ -4,6 +4,7 @@ const CartContext = createContext(null);
 
 export const CartProvider = ({ children }) => {
   const [items, setItems] = useState([]);
+  const [toast, setToast] = useState(null);
 
   const addItem = (product, quantity = 1) => {
     setItems((prev) => {
@@ -16,6 +17,11 @@ export const CartProvider = ({ children }) => {
         );
       }
       return [...prev, { product, quantity }];
+    });
+    setToast({
+      id: Date.now(),
+      productName: product.name,
+      quantity,
     });
   };
 
@@ -54,10 +60,12 @@ export const CartProvider = ({ children }) => {
       addItem,
       removeItem,
       getQuantity,
+      toast,
+      clearToast: () => setToast(null),
       totalCount: totals.count,
       totalPrice: totals.price,
     }),
-    [items, totals]
+    [items, totals, toast]
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

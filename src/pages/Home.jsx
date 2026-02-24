@@ -19,7 +19,7 @@ const Home = () => {
 
   const handleWhatsAppOrder = () => {
     const message = encodeURIComponent(t('cart.orderMessage.intro'));
-    window.open(`https://wa.me/1234567890?text=${message}`, '_blank');
+    window.open(`https://wa.me/87789268007?text=${message}`, '_blank');
   };
 
   return (
@@ -198,7 +198,7 @@ const Home = () => {
                 </Button>
               </Link>
               <Button variant="whatsapp" size="lg" onClick={handleWhatsAppOrder}>
-                Order via WhatsApp
+                {t('cta.order')}
               </Button>
             </div>
           </div>

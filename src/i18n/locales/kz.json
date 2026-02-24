@@ -78,6 +78,8 @@
   "products": {
     "title": "Біздің өнімдер",
     "empty": "Бұл санатта өнімдер жоқ.",
+    "searchLabel": "Өнімдерді іздеу",
+    "searchPlaceholder": "Атауы бойынша іздеу",
     "categories": {
       "all": "Барлығы",
       "tea": "Шай",
@@ -162,6 +164,7 @@
     "title": "Себет",
     "empty": "Себет бос.",
     "total": "Жалпы:",
+    "toastAdded": "Себетке қосылды: {{product}} ×{{count}}",
     "orderMessage": {
       "intro": "Сәлеметсіз бе! Мен тапсырыс бергім келеді:",
       "totalLabel": "Жалпы:"

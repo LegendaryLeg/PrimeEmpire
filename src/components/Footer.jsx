@@ -90,7 +90,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-start">
                 <a
-                  href="tel:+77778119001"
+                  href="tel:+77789268007"
                   className="mr-2 mt-0.5 flex-shrink-0 text-white/90 hover:text-white transition-colors"
                   aria-label="Call Prime Empire"
                 >
@@ -98,8 +98,8 @@ const Footer = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </a>
-                <a href="tel:+77778119001" className="text-white/90 hover:text-white transition-colors">
-                  +7 777 811 90 01
+                <a href="tel:+77789268007" className="text-white/90 hover:text-white transition-colors">
+                  +7 778 926 8007
                 </a>
               </li>
               <li className="flex items-start">

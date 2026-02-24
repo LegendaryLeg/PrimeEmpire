@@ -4,6 +4,7 @@ import { CartProvider } from './context/CartContext';
 import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import CartToast from './components/CartToast';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
@@ -18,6 +19,7 @@ function App() {
         <Router>
           <div className="flex flex-col min-h-screen">
             <Navbar />
+            <CartToast />
             <div className="flex-grow">
               <Routes>
                 <Route path="/" element={<Home />} />

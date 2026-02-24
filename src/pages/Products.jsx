@@ -6,6 +6,7 @@ import { useProducts } from '../hooks/useProducts';
 
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchTerm, setSearchTerm] = useState('');
   const { t } = useTranslation();
   const { language } = useLanguage();
   const { data: products, loading, error } = useProducts({ language });
@@ -19,16 +20,25 @@ const Products = () => {
     { key: 'grains', label: t('products.categories.grains'), value: 'grain' },
   ];
 
-  const filteredProducts =
-    selectedCategory === 'All'
-      ? products
-      : products.filter((product) => {
-          if (['Black Tea', 'Green Tea', 'Tea Bags'].includes(selectedCategory)) {
-            return product.category?.toLowerCase() === 'tea' && product.subcategory === selectedCategory;
-          }
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch = product.name
+      ?.toLowerCase()
+      .includes(searchTerm.trim().toLowerCase());
 
-          return product.category?.toLowerCase() === selectedCategory;
-        });
+    if (selectedCategory === 'All') {
+      return matchesSearch;
+    }
+
+    if (['Black Tea', 'Green Tea', 'Tea Bags'].includes(selectedCategory)) {
+      return (
+        matchesSearch &&
+        product.category?.toLowerCase() === 'tea' &&
+        product.subcategory === selectedCategory
+      );
+    }
+
+    return matchesSearch && product.category?.toLowerCase() === selectedCategory;
+  });
 
   return (
     <main className="min-h-screen py-24 bg-background-beige">
@@ -37,6 +47,23 @@ const Products = () => {
           <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">
             {t('products.title')}
           </h1>
+
+          {/* Search */}
+          <div className="mb-6">
+            <div className="max-w-xl mx-auto">
+              <label htmlFor="product-search" className="sr-only">
+                {t('products.searchLabel')}
+              </label>
+              <input
+                id="product-search"
+                type="search"
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+                placeholder={t('products.searchPlaceholder')}
+                className="w-full rounded-full border border-border-divider bg-white px-5 py-3 text-sm text-text-primary shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-green"
+              />
+            </div>
+          </div>
 
           {/* Category Filters */}
           <div className="mb-8">
