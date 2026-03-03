@@ -42,7 +42,7 @@ const ProductCard = ({ product }) => {
           ₸{product.price}
         </p>
         <div className="mt-auto flex flex-col gap-3">
-          <div className="flex items-center justify-between border border-border-divider rounded-full px-3 py-2">
+          <div className="flex items-center justify-between gap-2 border border-border-divider rounded-full px-3 py-2">
             <button
               onClick={handleDecrease}
               className="w-8 h-8 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
@@ -50,9 +50,21 @@ const ProductCard = ({ product }) => {
             >
               −
             </button>
-            <span className="text-sm font-semibold text-text-primary">
-              {quantity}
-            </span>
+            <label htmlFor={`quantity-${product.id}`} className="sr-only">
+              Quantity for {product.name}
+            </label>
+            <input
+              id={`quantity-${product.id}`}
+              type="number"
+              min="1"
+              step="1"
+              value={quantity}
+              onChange={(event) => {
+                const nextValue = Number(event.target.value);
+                setQuantity(Number.isNaN(nextValue) ? 1 : Math.max(1, Math.floor(nextValue)));
+              }}
+              className="w-16 rounded-md border border-border-divider bg-white px-2 py-1 text-center text-sm font-semibold text-text-primary focus:outline-none focus:ring-2 focus:ring-primary-green"
+            />
             <button
               onClick={handleIncrease}
               className="w-8 h-8 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
