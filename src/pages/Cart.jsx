@@ -15,7 +15,7 @@ const Cart = () => {
     const message = encodeURIComponent(
       `${t('cart.orderMessage.intro')}\n\n${lines.join('\n')}\n\n${t('cart.orderMessage.totalLabel')} ₸${totalPrice}`
     );
-    window.open(`https://wa.me/87789268007?text=${message}`, '_blank');
+    window.open(`https://wa.me/77789268007?text=${message}`, '_blank');
   };
 
   return (

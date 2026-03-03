@@ -27,7 +27,7 @@ const Contact = () => {
         'contact.whatsappMessage.phoneLabel'
       )}: ${formData.phone}\n${t('contact.whatsappMessage.messageLabel')}: ${formData.message}`
     );
-    window.open(`https://wa.me/87789268007?text=${message}`, '_blank');
+    window.open(`https://wa.me/77789268007?text=${message}`, '_blank');
     setFormData({ name: '', email: '', phone: '', message: '' });
   };
 

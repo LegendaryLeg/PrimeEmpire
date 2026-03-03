@@ -19,7 +19,7 @@ const Home = () => {
 
   const handleWhatsAppOrder = () => {
     const message = encodeURIComponent(t('cart.orderMessage.intro'));
-    window.open(`https://wa.me/87789268007?text=${message}`, '_blank');
+    window.open(`https://wa.me/77789268007?text=${message}`, '_blank');
   };
 
   return (
