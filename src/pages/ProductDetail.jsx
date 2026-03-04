@@ -170,12 +170,12 @@ const ProductDetail = () => {
                 </label>
                 <input
                   id={`quantity-${product.id}`}
-                  type="number"
-                  min="1"
-                  step="1"
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
                   value={quantity}
                   onChange={(event) => {
-                    const nextValue = Number(event.target.value);
+                    const nextValue = Number(event.target.value.replace(/[^\d]/g, ''));
                     setQuantity(Number.isNaN(nextValue) ? 1 : Math.max(1, Math.floor(nextValue)));
                   }}
                   className="w-20 rounded-md border border-border-divider bg-white px-2 py-1 text-center text-base font-semibold text-text-primary focus:outline-none focus:ring-2 focus:ring-primary-green"
