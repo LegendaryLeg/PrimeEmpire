@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, '..');
 const publicDir = path.join(projectRoot, 'public');
 
-const siteUrl = (process.env.SITE_URL || 'https://www.primeempire.kg').replace(/\/+$/, '');
+const siteUrl = (process.env.SITE_URL || 'https://www.primeempire.kz').replace(/\/+$/, '');
 const today = new Date().toISOString().slice(0, 10);
 
 const staticRoutes = ['/', '/products', '/about', '/contact'];

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.primeempire.kg/sitemap.xml
+Sitemap: https://www.primeempire.kz/sitemap.xml
