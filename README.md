@@ -46,6 +46,16 @@ npm run build
 
 The built files will be in the `dist` directory.
 
+### Sitemap and Search Indexing
+
+This project auto-generates `public/sitemap.xml` and `public/robots.txt` before each build.
+
+If your production domain is different, set `SITE_URL` before building:
+
+```bash
+$env:SITE_URL="https://your-domain.com"; npm run build
+```
+
 ## Project Structure
 
 ```
