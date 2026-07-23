@@ -59,7 +59,7 @@ const ProductModal = ({ productId, fallbackProduct = null, onClose }) => {
       aria-modal="true"
     >
       <div
-        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-6 md:p-10"
+        className="relative w-full max-w-3xl max-h-[90vh] overflow-hidden bg-white rounded-2xl shadow-2xl p-5 md:p-6"
         onClick={(event) => event.stopPropagation()}
       >
         <button
@@ -85,89 +85,57 @@ const ProductModal = ({ productId, fallbackProduct = null, onClose }) => {
         )}
 
         {product && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Image Gallery */}
-            <div>
-              <div className="aspect-square mb-4 bg-border-divider rounded-lg overflow-hidden">
-                <img
-                  src={galleryImages[selectedImage]}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              {galleryImages.length > 1 && (
-                <div className="grid grid-cols-4 gap-2">
-                  {galleryImages.map((image, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedImage(index)}
-                      className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${
-                        selectedImage === index
-                          ? 'border-primary-green ring-2 ring-background-beige'
-                          : 'border-border-divider hover:border-primary-green'
-                      }`}
-                    >
-                      <img
-                        src={image}
-                        alt={`${product.name} view ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            {/* Image */}
+            <div className="h-48 sm:h-60 md:h-full md:max-h-[70vh] bg-border-divider rounded-xl overflow-hidden">
+              <img
+                src={galleryImages[selectedImage]}
+                alt={product.name}
+                className="w-full h-full object-cover"
+              />
             </div>
 
             {/* Product Info */}
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 pr-10">{product.name}</h2>
-              <p className="text-3xl font-bold text-primary-green mb-6">₸{product.price}</p>
+            <div className="flex flex-col min-w-0">
+              <h2 className="text-xl md:text-2xl font-bold mb-1 pr-10">{product.name}</h2>
+              <p className="text-2xl font-bold text-primary-green mb-3">₸{product.price}</p>
 
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold mb-2">{t('productDetail.description')}</h3>
-                <p className="text-text-secondary leading-relaxed">{product.description}</p>
-              </div>
+              <p className="text-text-secondary text-sm leading-relaxed mb-3 line-clamp-3">
+                {product.description}
+              </p>
 
-              <div className="space-y-4 mb-8">
+              <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm mb-4">
                 {product.form && (
-                  <div>
-                    <h3 className="font-semibold text-text-primary mb-1">
-                      {t('productDetail.form')}
-                    </h3>
-                    <p className="text-text-secondary">{product.form}</p>
-                  </div>
+                  <p className="text-text-secondary">
+                    <span className="font-semibold text-text-primary">{t('productDetail.form')}: </span>
+                    {product.form}
+                  </p>
                 )}
                 {product.origin && (
-                  <div>
-                    <h3 className="font-semibold text-text-primary mb-1">
-                      {t('productDetail.origin')}
-                    </h3>
-                    <p className="text-text-secondary">{product.origin}</p>
-                  </div>
+                  <p className="text-text-secondary">
+                    <span className="font-semibold text-text-primary">{t('productDetail.origin')}: </span>
+                    {product.origin}
+                  </p>
                 )}
                 {product.tea_type && (
-                  <div>
-                    <h3 className="font-semibold text-text-primary mb-1">
-                      {t('productDetail.teaType')}
-                    </h3>
-                    <p className="text-text-secondary">{product.tea_type}</p>
-                  </div>
+                  <p className="text-text-secondary">
+                    <span className="font-semibold text-text-primary">{t('productDetail.teaType')}: </span>
+                    {product.tea_type}
+                  </p>
                 )}
                 {product.leaf_type && (
-                  <div>
-                    <h3 className="font-semibold text-text-primary mb-1">
-                      {t('productDetail.leafType')}
-                    </h3>
-                    <p className="text-text-secondary">{product.leaf_type}</p>
-                  </div>
+                  <p className="text-text-secondary">
+                    <span className="font-semibold text-text-primary">{t('productDetail.leafType')}: </span>
+                    {product.leaf_type}
+                  </p>
                 )}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="flex items-center justify-between gap-2 border border-border-divider rounded-full px-4 py-2 flex-1">
+              <div className="mt-auto flex flex-col gap-3">
+                <div className="flex items-center justify-between gap-2 border border-border-divider rounded-full px-3 py-1.5">
                   <button
                     onClick={handleDecrease}
-                    className="w-10 h-10 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
+                    className="w-9 h-9 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
                     aria-label={`Decrease quantity for ${product.name}`}
                   >
                     −
@@ -185,24 +153,26 @@ const ProductModal = ({ productId, fallbackProduct = null, onClose }) => {
                       const nextValue = Number(event.target.value.replace(/[^\d]/g, ''));
                       setQuantity(Number.isNaN(nextValue) ? 1 : Math.max(1, Math.floor(nextValue)));
                     }}
-                    className="w-20 rounded-md border border-border-divider bg-white px-2 py-1 text-center text-base font-semibold text-text-primary focus:outline-none focus:ring-2 focus:ring-primary-green"
+                    className="w-16 rounded-md border border-border-divider bg-white px-2 py-1 text-center text-base font-semibold text-text-primary focus:outline-none focus:ring-2 focus:ring-primary-green"
                   />
                   <button
                     onClick={handleIncrease}
-                    className="w-10 h-10 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
+                    className="w-9 h-9 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
                     aria-label={`Increase quantity for ${product.name}`}
                   >
                     +
                   </button>
                 </div>
-                <Button variant="outline" size="lg" className="flex-1" onClick={handleAddToCart}>
-                  {t('buttons.addToCart')}
-                </Button>
-                <Link to="/cart" className="flex-1" onClick={onClose}>
-                  <Button variant="whatsapp" size="lg" className="w-full">
-                    {t('buttons.goToCheckout')}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button variant="outline" size="md" className="flex-1" onClick={handleAddToCart}>
+                    {t('buttons.addToCart')}
                   </Button>
-                </Link>
+                  <Link to="/cart" className="flex-1" onClick={onClose}>
+                    <Button variant="whatsapp" size="md" className="w-full">
+                      {t('buttons.goToCheckout')}
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
