@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Button from './Button';
+import ProductModal from './ProductModal';
 import { useCart } from '../context/CartContext';
 
 const ProductCard = ({ product }) => {
   const { t } = useTranslation();
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDecrease = () => {
     setQuantity((prev) => Math.max(1, prev - 1));
@@ -23,7 +24,12 @@ const ProductCard = ({ product }) => {
 
   return (
     <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-      <Link to={`/products/${product.id}`} className="block">
+      <button
+        type="button"
+        onClick={() => setIsModalOpen(true)}
+        className="block w-full text-left"
+        aria-label={product.name}
+      >
         <div className="aspect-square overflow-hidden bg-border-divider">
           <img
             src={product.image}
@@ -31,13 +37,17 @@ const ProductCard = ({ product }) => {
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />
         </div>
-      </Link>
+      </button>
       <div className="p-4 flex flex-col flex-1">
-        <Link to={`/products/${product.id}`}>
+        <button
+          type="button"
+          onClick={() => setIsModalOpen(true)}
+          className="text-left"
+        >
           <h3 className="text-lg font-semibold mb-2 hover:text-primary-green transition-colors">
             {product.name}
           </h3>
-        </Link>
+        </button>
         <p className="text-primary-green font-bold text-xl mb-4">
           ₸{product.price}
         </p>
@@ -78,6 +88,13 @@ const ProductCard = ({ product }) => {
           </Button>
         </div>
       </div>
+      {isModalOpen && (
+        <ProductModal
+          productId={product.id}
+          fallbackProduct={product}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </article>
   );
 };
