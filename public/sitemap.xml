@@ -2,122 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.primeempire.kz/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-07-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.primeempire.kz/products</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-07-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.primeempire.kz/about</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-07-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.primeempire.kz/contact</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-07-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/1</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/2</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/3</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/4</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/5</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/6</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/7</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/8</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/9</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/10</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/11</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/12</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/13</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/14</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/15</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.primeempire.kz/products/17</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
 </urlset>

@@ -69,10 +69,7 @@ src/
 │   ├── About.jsx
 │   ├── Contact.jsx
 │   ├── Home.jsx
-│   ├── ProductDetail.jsx
 │   └── Products.jsx
-├── data/               # Data files
-│   └── products.js
 ├── App.jsx             # Main app component with routing
 ├── main.jsx            # Entry point
 └── index.css           # Global styles
@@ -91,7 +88,7 @@ The website is built with a mobile-first approach and includes breakpoints for:
 Reusable button component with multiple variants (primary, secondary, outline, whatsapp) and sizes.
 
 ### ProductCard
-Displays product information in a card format with image, name, price, and action button.
+Displays product information in a card format with image, name, price, and action button. Clicking a product opens a modal with details.
 
 ### Navbar
 Responsive navigation bar with mobile hamburger menu and active route highlighting.
@@ -105,13 +102,12 @@ Footer with company information, quick links, contact details, and social media 
 Primary colors can be customized in `tailwind.config.js`. The default primary color is blue.
 
 ### Products
-Product data is stored in `src/data/products.js`. You can modify this file to add, remove, or update products.
+Products are loaded from Supabase. Clicking a product opens a modal instead of a separate page.
 
 ### WhatsApp Integration
 Update the WhatsApp phone number in:
-- `src/pages/Home.jsx` (line with `wa.me/1234567890`)
-- `src/pages/ProductDetail.jsx` (line with `wa.me/1234567890`)
-- `src/pages/Contact.jsx` (line with `wa.me/1234567890`)
+- `src/pages/Home.jsx` (line with `wa.me/`)
+- `src/pages/Contact.jsx` (line with `wa.me/`)
 
 ## Accessibility
 

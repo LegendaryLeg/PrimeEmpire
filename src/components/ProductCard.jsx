@@ -1,22 +1,12 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import Button from './Button';
 import ProductModal from './ProductModal';
+import ProductPurchaseControls from './ProductPurchaseControls';
 import { useCart } from '../context/CartContext';
 
 const ProductCard = ({ product }) => {
-  const { t } = useTranslation();
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleDecrease = () => {
-    setQuantity((prev) => Math.max(1, prev - 1));
-  };
-
-  const handleIncrease = () => {
-    setQuantity((prev) => prev + 1);
-  };
 
   const handleAddToCart = () => {
     addItem(product, quantity);
@@ -42,50 +32,21 @@ const ProductCard = ({ product }) => {
         <button
           type="button"
           onClick={() => setIsModalOpen(true)}
-          className="text-left"
+          className="text-left mb-4"
         >
-          <h3 className="text-lg font-semibold mb-2 hover:text-primary-green transition-colors">
+          <h3 className="text-lg font-semibold hover:text-primary-green transition-colors">
             {product.name}
           </h3>
         </button>
-        <p className="text-primary-green font-bold text-xl mb-4">
-          ₸{product.price}
-        </p>
-        <div className="mt-auto flex flex-col gap-3">
-          <div className="flex items-center justify-between gap-2 border border-border-divider rounded-full px-3 py-2">
-            <button
-              onClick={handleDecrease}
-              className="w-8 h-8 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
-              aria-label={`Decrease quantity for ${product.name}`}
-            >
-              −
-            </button>
-            <label htmlFor={`quantity-${product.id}`} className="sr-only">
-              Quantity for {product.name}
-            </label>
-            <input
-              id={`quantity-${product.id}`}
-              type="text"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              value={quantity}
-              onChange={(event) => {
-                const nextValue = Number(event.target.value.replace(/[^\d]/g, ''));
-                setQuantity(Number.isNaN(nextValue) ? 1 : Math.max(1, Math.floor(nextValue)));
-              }}
-              className="w-16 rounded-md border border-border-divider bg-white px-2 py-1 text-center text-sm font-semibold text-text-primary focus:outline-none focus:ring-2 focus:ring-primary-green"
-            />
-            <button
-              onClick={handleIncrease}
-              className="w-8 h-8 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
-              aria-label={`Increase quantity for ${product.name}`}
-            >
-              +
-            </button>
-          </div>
-          <Button variant="outline" size="sm" className="w-full" onClick={handleAddToCart}>
-            {t('buttons.addToCart')}
-          </Button>
+        <div className="mt-auto">
+          <ProductPurchaseControls
+            productId={product.id}
+            productName={product.name}
+            price={product.price}
+            quantity={quantity}
+            onQuantityChange={setQuantity}
+            onAddToCart={handleAddToCart}
+          />
         </div>
       </div>
       {isModalOpen && (

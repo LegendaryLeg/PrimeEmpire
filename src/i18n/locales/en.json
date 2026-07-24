@@ -21,6 +21,10 @@
     "backToProducts": "Back to Products",
     "back": "Back"
   },
+  "labels": {
+    "price": "Price",
+    "quantity": "Quantity"
+  },
   "home": {
     "hero": {
       "title": "Authentic flavours from India",

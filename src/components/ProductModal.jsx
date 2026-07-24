@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Button from './Button';
+import ProductPurchaseControls from './ProductPurchaseControls';
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useProducts } from '../hooks/useProducts';
@@ -35,14 +34,6 @@ const ProductModal = ({ productId, fallbackProduct = null, onClose }) => {
       document.body.style.overflow = previousOverflow;
     };
   }, [onClose]);
-
-  const handleDecrease = () => {
-    setQuantity((prev) => Math.max(1, prev - 1));
-  };
-
-  const handleIncrease = () => {
-    setQuantity((prev) => prev + 1);
-  };
 
   const handleAddToCart = () => {
     if (product) {
@@ -86,7 +77,6 @@ const ProductModal = ({ productId, fallbackProduct = null, onClose }) => {
 
         {product && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-            {/* Image */}
             <div className="h-48 sm:h-60 md:h-full md:max-h-[70vh] bg-border-divider rounded-xl overflow-hidden">
               <img
                 src={galleryImages[selectedImage]}
@@ -95,10 +85,8 @@ const ProductModal = ({ productId, fallbackProduct = null, onClose }) => {
               />
             </div>
 
-            {/* Product Info */}
             <div className="flex flex-col min-w-0">
-              <h2 className="text-xl md:text-2xl font-bold mb-1 pr-10">{product.name}</h2>
-              <p className="text-2xl font-bold text-primary-green mb-3">₸{product.price}</p>
+              <h2 className="text-xl md:text-2xl font-bold mb-3 pr-10">{product.name}</h2>
 
               <p className="text-text-secondary text-sm leading-relaxed mb-3 line-clamp-3">
                 {product.description}
@@ -131,48 +119,15 @@ const ProductModal = ({ productId, fallbackProduct = null, onClose }) => {
                 )}
               </div>
 
-              <div className="mt-auto flex flex-col gap-3">
-                <div className="flex items-center justify-between gap-2 border border-border-divider rounded-full px-3 py-1.5">
-                  <button
-                    onClick={handleDecrease}
-                    className="w-9 h-9 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
-                    aria-label={`Decrease quantity for ${product.name}`}
-                  >
-                    −
-                  </button>
-                  <label htmlFor={`modal-quantity-${product.id}`} className="sr-only">
-                    Quantity for {product.name}
-                  </label>
-                  <input
-                    id={`modal-quantity-${product.id}`}
-                    type="text"
-                    inputMode="numeric"
-                    pattern="[0-9]*"
-                    value={quantity}
-                    onChange={(event) => {
-                      const nextValue = Number(event.target.value.replace(/[^\d]/g, ''));
-                      setQuantity(Number.isNaN(nextValue) ? 1 : Math.max(1, Math.floor(nextValue)));
-                    }}
-                    className="w-16 rounded-md border border-border-divider bg-white px-2 py-1 text-center text-base font-semibold text-text-primary focus:outline-none focus:ring-2 focus:ring-primary-green"
-                  />
-                  <button
-                    onClick={handleIncrease}
-                    className="w-9 h-9 rounded-full border border-border-divider text-text-primary hover:bg-background-beige transition-colors"
-                    aria-label={`Increase quantity for ${product.name}`}
-                  >
-                    +
-                  </button>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button variant="outline" size="md" className="flex-1" onClick={handleAddToCart}>
-                    {t('buttons.addToCart')}
-                  </Button>
-                  <Link to="/cart" className="flex-1" onClick={onClose}>
-                    <Button variant="whatsapp" size="md" className="w-full">
-                      {t('buttons.goToCheckout')}
-                    </Button>
-                  </Link>
-                </div>
+              <div className="mt-auto">
+                <ProductPurchaseControls
+                  productId={`modal-${product.id}`}
+                  productName={product.name}
+                  price={product.price}
+                  quantity={quantity}
+                  onQuantityChange={setQuantity}
+                  onAddToCart={handleAddToCart}
+                />
               </div>
             </div>
           </div>
